@@ -1,1 +1,14 @@
 version: "3.9"
+
+
+api-gateway:
+    image: nginx
+    volumes:
+      - ./nginx-service:/etc/nginx/conf.d
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - web-academico
+      - web-financeiro
+      - web-mkt
