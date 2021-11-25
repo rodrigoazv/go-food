@@ -9,6 +9,5 @@ api-gateway:
     ports:
       - 80:80
     depends_on:
-      - web-academico
-      - web-financeiro
-      - web-mkt
+      - goody
+      - gouser
