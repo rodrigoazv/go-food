@@ -1,7 +1,32 @@
-version: "3.9"
+version: "3.3"
+
+services:
+  goody:
+    build: ./goody
+    command: sh ./entrypoint.sh
+    ports:
+      - 1324:1324
+    volumes:
+      - ./goody:/app
+      - type: bind
+        source: ./goody.sh
+        target: /app/entrypoint.sh
+    working_dir: /app
+
+  gouser:
+    build: ./gouser
+    command: sh ./entrypoint.sh
+    ports:
+      - 1323:1323
+    volumes:
+      - ./gouser:/app
+      - type: bind
+        source: ./gouser.sh
+        target: /app/entrypoint.sh
+    working_dir: /app
 
 
-api-gateway:
+  api-gateway:
     image: nginx
     volumes:
       - ./nginx-service:/etc/nginx/conf.d
