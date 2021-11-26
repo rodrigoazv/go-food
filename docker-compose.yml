@@ -5,7 +5,7 @@ services:
     build: ./goody
     command: sh ./entrypoint.sh
     ports:
-      - 1324:1324
+      - 1324:1323
     volumes:
       - ./goody:/app
       - type: bind
@@ -32,7 +32,10 @@ services:
       - ./nginx-service:/etc/nginx/conf.d
     restart: always
     ports:
-      - 80:80
+      - "8080:80"
+    environment:
+      - NGINX_HOST=foobar.com
+      - NGINX_PORT=80
     depends_on:
       - goody
       - gouser
