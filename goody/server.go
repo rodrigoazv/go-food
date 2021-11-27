@@ -1,14 +1,14 @@
-package main 
+package main
 
-import(
+import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
 )
 
-func main(){
+func main() {
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error{
+	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hellow")
 	})
 
