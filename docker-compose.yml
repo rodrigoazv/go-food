@@ -12,6 +12,8 @@ services:
         source: ./goody.sh
         target: /app/entrypoint.sh
     working_dir: /app
+    depends_on:
+      - keycloak
 
   gouser:
     build: ./gouser
@@ -23,7 +25,17 @@ services:
       - type: bind
         source: ./gouser.sh
         target: /app/entrypoint.sh
-    working_dir: /app
+    working_dir: /ap
+    depends_on:
+      - keycloak
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - 8082:8080
 
 
   api-gateway:
@@ -39,3 +51,4 @@ services:
     depends_on:
       - goody
       - gouser
+      - keycloak
